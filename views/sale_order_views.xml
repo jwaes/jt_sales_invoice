@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <record id="view_order_form" model="ir.ui.view">
-        <field name="name">view_order_form</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="arch" type="xml">
-            <xpath expr="//group[@name='sale_info']" position="inside">
-                <field name="invoice_status_overruled" states="sale,done" default="not overruled"/>
-                <field name="delivery_status" widget="badge"
-                    decoration-success="delivery_status == 'delivered'" decoration-info="delivery_status == 'partial'"/>
-            </xpath>
-            <!-- <xpath expr="//field[@name='invoice_status']" position="attributes">
+ <record id="view_order_form" model="ir.ui.view">
+  <field name="name">view_order_form</field>
+  <field name="model">sale.order</field>
+  <field name="inherit_id" ref="sale.view_order_form"/>
+  <field name="arch" type="xml">
+   <xpath expr="//group[@name='sale_info']" position="inside">
+    <field default="not overruled" invisible="state not in ['sale','done']" name="invoice_status_overruled"/>
+    <field decoration-info="delivery_status == 'partial'" decoration-success="delivery_status == 'delivered'" name="delivery_status" widget="badge"/>
+   </xpath>
+   <!-- <xpath expr="//field[@name='invoice_status']" position="attributes">
                 <attribute name="widget" value="badge"/>
                 <attribute name="decoration-success">invoice_status == 'invoiced'</attribute>
                 <attribute name="decoration-info">invoice_status == 'to invoice'</attribute>
-            </xpath> -->
-        </field>
-    </record>
-
-    <record id="view_order_tree" model="ir.ui.view">
-        <field name="name">view_order_tree</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_tree"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='invoice_status']" position="after">
-                <field name="delivery_status" optional="hide"
-                widget="badge"
-                decoration-success="delivery_status == 'delivered'" decoration-info="delivery_status == 'partial'"/>
-            </xpath>
-        </field>
-    </record>    
-    
+            </xpath> --></field>
+ </record>
+ <record id="view_order_tree" model="ir.ui.view">
+  <field name="name">view_order_tree</field>
+  <field name="model">sale.order</field>
+  <field name="inherit_id" ref="sale.view_order_tree"/>
+  <field name="arch" type="xml">
+   <xpath expr="//field[@name='invoice_status']" position="after">
+    <field decoration-info="delivery_status == 'partial'" decoration-success="delivery_status == 'delivered'" name="delivery_status" optional="hide" widget="badge"/>
+   </xpath></field>
+ </record>
 </odoo>
