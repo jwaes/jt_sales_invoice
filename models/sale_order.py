@@ -25,10 +25,7 @@ class SaleOrder(models.Model):
                 order.invoice_status = order.invoice_status_overruled
 
 
-    delivery_status = fields.Selection([
-        ('not', 'Not Delivered'),
-        ('partial', 'Partial Delivery'),
-        ('delivered', 'All delivered'),
+    delivery_status = fields.Selection(selection_add=[
         ('na', 'Not applicable')
     ], string='Delivery Status', compute='_compute_delivery_status')
 
@@ -48,7 +45,7 @@ class SaleOrder(models.Model):
                 elif not_delivered_count > 0:
                     so.delivery_status = 'partial'
             elif not_delivered_count > 0:
-                so.delivery_status = 'not'
+                so.delivery_status = 'pending'
             else :
                 so.delivery_status = 'na'
 
