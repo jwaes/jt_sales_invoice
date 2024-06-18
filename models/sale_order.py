@@ -25,27 +25,27 @@ class SaleOrder(models.Model):
                 order.invoice_status = order.invoice_status_overruled
 
 
-    delivery_status = fields.Selection(selection_add=[
-        ('na', 'Not applicable')
-    ], string='Delivery Status', compute='_compute_delivery_status')
+    # delivery_status = fields.Selection(selection_add=[
+    #     ('na', 'Not applicable')
+    # ], string='Delivery Status', compute='_compute_delivery_status')
 
-    @api.depends('picking_ids', 'picking_ids.state')
-    def _compute_delivery_status(self):
-        for so in self:
-            delivered_count = 0
-            not_delivered_count = 0
-            for picking in so.picking_ids:
-                if picking.state == 'done':
-                    delivered_count += 1
-                elif picking.state not in ('draft', 'cancel'):
-                    not_delivered_count += 1
-            if delivered_count > 0:
-                if not_delivered_count == 0:
-                    so.delivery_status = 'delivered'
-                elif not_delivered_count > 0:
-                    so.delivery_status = 'partial'
-            elif not_delivered_count > 0:
-                so.delivery_status = 'pending'
-            else :
-                so.delivery_status = 'na'
+    # @api.depends('picking_ids', 'picking_ids.state')
+    # def _compute_delivery_status(self):
+    #     for so in self:
+    #         delivered_count = 0
+    #         not_delivered_count = 0
+    #         for picking in so.picking_ids:
+    #             if picking.state == 'done':
+    #                 delivered_count += 1
+    #             elif picking.state not in ('draft', 'cancel'):
+    #                 not_delivered_count += 1
+    #         if delivered_count > 0:
+    #             if not_delivered_count == 0:
+    #                 so.delivery_status = 'full'
+    #             elif not_delivered_count > 0:
+    #                 so.delivery_status = 'partial'
+    #         elif not_delivered_count > 0:
+    #             so.delivery_status = 'pending'
+    #         else :
+    #             so.delivery_status = 'na'
 

@@ -15,7 +15,7 @@
                 <attribute name="decoration-info">invoice_status == 'to invoice'</attribute>
             </xpath> --></field>
  </record>
- <record id="view_order_tree" model="ir.ui.view">
+ <!-- <record id="view_order_tree" model="ir.ui.view">
   <field name="name">view_order_tree</field>
   <field name="model">sale.order</field>
   <field name="inherit_id" ref="sale.view_order_tree"/>
@@ -23,5 +23,5 @@
    <xpath expr="//field[@name='invoice_status']" position="after">
     <field decoration-info="delivery_status == 'partial'" decoration-success="delivery_status == 'delivered'" name="delivery_status" optional="hide" widget="badge"/>
    </xpath></field>
- </record>
+ </record> -->
 </odoo>
