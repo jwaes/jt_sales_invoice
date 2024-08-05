@@ -6,8 +6,8 @@
   <field name="inherit_id" ref="sale.view_order_form"/>
   <field name="arch" type="xml">
    <xpath expr="//group[@name='sale_info']" position="inside">
-    <field default="not overruled" invisible="state not in ['sale','done']" name="invoice_status_overruled"/>
-    <field decoration-info="delivery_status == 'partial'" decoration-success="delivery_status == 'delivered'" name="delivery_status" widget="badge"/>
+    <!-- <field default="not overruled" invisible="state not in ['sale','done']" name="invoice_status_overruled"/> -->
+    <!-- <field decoration-info="delivery_status == 'partial'" decoration-success="delivery_status == 'delivered'" name="delivery_status" widget="badge"/> -->
    </xpath>
    <!-- <xpath expr="//field[@name='invoice_status']" position="attributes">
                 <attribute name="widget" value="badge"/>
