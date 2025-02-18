@@ -12,7 +12,7 @@
           decoration-success="delivery_status == 'delivered'" name="delivery_status" widget="badge" />
       </xpath>
       <xpath expr="//field[@name='invoice_status']" position="attributes">
-        <attribute name="widget" value="badge" />
+        <attribute name="widget">badge</attribute>
         <attribute name="decoration-success">invoice_status == 'invoiced'</attribute>
         <attribute name="decoration-info">invoice_status == 'to invoice'</attribute>
       </xpath>
